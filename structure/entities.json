@@ -13,6 +13,8 @@
     "FitnessCenter": {
         "name": "String",
         "address": "String",
+        "email": "String",
+        "phone": "String",
         "trainers": "User[]",
         "createdAt": "Datetime",
         "updatedAt": "Datetime"
