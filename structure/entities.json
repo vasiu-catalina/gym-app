@@ -2,7 +2,7 @@
     "User": {
         "firstname": "String",
         "lastname": "String",
-        "birthDate": "String",
+        "birthDate": "Date",
         "email": "String",
         "password": "String",
         "phone": "String",
