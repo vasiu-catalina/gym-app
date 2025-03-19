@@ -83,8 +83,8 @@
                 "exercises": [
                     {
                         "name": "String",
-                        "nrSets": "String",
-                        "nrReps": "String",
+                        "nrSets": "Number",
+                        "nrReps": "Number",
                         "duration": "Number"
                     }
                 ]
