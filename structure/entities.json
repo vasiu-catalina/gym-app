@@ -68,7 +68,7 @@
         "updatedAt": "Datetime"
     },
     "Measurement": {
-        "type": "enum('arms', 'legs','glutes', 'weight')",
+        "type": "enum('Biceps','Triceps','Forearm','Chest','Waist','Hips','Quads','Calf','Shoulders','Back','Glutes','Abdomen','Weight')",
         "unit": "enum('kg', 'cm')",
         "date": "Datetime",
         "createdAt": "Datetime",
