@@ -54,12 +54,13 @@
         "exercises": [
             {
                 "name": "String",
-                "setNr": "String",
-                "nrReps": "String",
+                "setNr": "Number",
+                "nrReps": "Number",
                 "weight": "Number",
                 "duration": "Number"
             }
         ],
+        "date": "Date",
         "name": "String",
         "description": "String",
         "duration": "String",
