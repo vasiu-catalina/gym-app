@@ -1,0 +1,109 @@
+{
+    "User": {
+        "firstname": "String",
+        "lastname": "String",
+        "birthDate": "String",
+        "email": "String",
+        "password": "String",
+        "phone": "String",
+        "role": "enum('admin', 'trainer', 'client')",
+        "createdAt": "Datetime",
+        "updatedAt": "Datetime"
+    },
+    "FitnessCenter": {
+        "name": "String",
+        "address": "String",
+        "trainers": "User[]",
+        "createdAt": "Datetime",
+        "updatedAt": "Datetime"
+    },
+    "Membership": {
+        "name": "String",
+        "type": "enum('gym_access', 'personal_trainer')",
+        "price": "Number",
+        "description": "String",
+        "createdAt": "Datetime",
+        "updatedAt": "Datetime"
+    },
+    "Subscription": {
+        "client": "User",
+        "membership": "Membership",
+        "autoRenewal": "Boolean",
+        "startDate": "Date",
+        "endDate": "Date",
+        "status": "enum('pending', 'paid', 'active', 'inActive')",
+        "createdAt": "Datetime",
+        "updatedAt": "Datetime"
+    },
+    "CheckInLog": {
+        "user": "User",
+        "fitnessCenter": "FitnessCenter",
+        "subscription": "Subscription",
+        "checkInTime": "Datetime",
+        "checkOutTime": "Datetime",
+        "duration": "Number",
+        "status": "enum('checked_in', 'checked_out')",
+        "createdAt": "Datetime",
+        "updatedAt": "Datetime"
+    },
+    "WorkoutLog": {
+        "user": "User",
+        "gymPlan": "GymPlan",
+        "exercises": [
+            {
+                "name": "String",
+                "setNr": "String",
+                "nrReps": "String",
+                "weight": "Number",
+                "duration": "Number"
+            }
+        ],
+        "name": "String",
+        "description": "String",
+        "duration": "String",
+        "createdAt": "Datetime",
+        "updatedAt": "Datetime"
+    },
+    "Measurement": {
+        "type": "enum('arms', 'legs','glutes', 'weight')",
+        "unit": "enum('kg', 'cm')",
+        "date": "Datetime",
+        "createdAt": "Datetime",
+        "updatedAt": "Datetime"
+    },
+    "GymPlan": {
+        "name": "String",
+        "description": "String",
+        "days": [
+            {
+                "name": "String",
+                "description": "String",
+                "exercises": [
+                    {
+                        "name": "String",
+                        "nrSets": "String",
+                        "nrReps": "String",
+                        "duration": "Number"
+                    }
+                ]
+            }
+        ],
+        "startDate": "Date",
+        "endDate": "Date",
+        "nrWeeks": "Number",
+        "createdAt": "Datetime",
+        "updatedAt": "Datetime"
+    },
+    "PhotoAlbum": {
+        "name": "String",
+        "user": "User",
+        "images": [
+            {
+                "filename": "String",
+                "createdAt": "Datetime"
+            }
+        ],
+        "createdAt": "Datetime",
+        "updatedAt": "Datetime"
+    }
+}
