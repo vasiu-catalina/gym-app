@@ -15,20 +15,6 @@ GET /users/:userId
 PATCH /users/:userId
 DELETE /users/:userId
 
-FitnessCenter
-GET /fitness-centers
-GET /fitness-centers/:id
-
-Membership
-GET /memberships
-GET /memberships/:id
-
-Subscription
-POST /clients/:clientId/subscriptions
-GET /clients/:clientId/subscriptions
-GET /clients/:clientId/subscriptions/:subscriptionsId
-PATCH /clients/:clientId/subscriptions/:subscriptionsId
-
 CheckInLog
 POST /users/:userId/check-in-logs/date/:date
 GET /users/:userId/check-in-logs
@@ -61,15 +47,5 @@ GET /users/:userId/photo-albums/:photoAlbumId
 PATCH /users/:userId/photo-albums/:photoAlbumId
 DELETE /users/:userId/photo-albums/:photoAlbumId
 
-Admin
+Trainer
 GET /admin/clients
-GET /admin/trainers
-POST /admin/fitness-centers
-PATCH /admin/fitness-centers/:id
-DELETE /admin/fitness-centers/:id
-POST /admin/memberships
-PATCH /admin/memberships/:id
-DELETE /admin/memberships/:id
-GET /admin/subscriptions
-
-

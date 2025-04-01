@@ -6,41 +6,13 @@
         "email": "String",
         "password": "String",
         "phone": "String",
-        "role": "enum('admin', 'trainer', 'client')",
-        "createdAt": "Datetime",
-        "updatedAt": "Datetime"
-    },
-    "FitnessCenter": {
-        "name": "String",
-        "address": "String",
-        "email": "String",
-        "phone": "String",
-        "trainers": "User[]",
-        "createdAt": "Datetime",
-        "updatedAt": "Datetime"
-    },
-    "Membership": {
-        "name": "String",
-        "type": "enum('gym_access', 'personal_trainer')",
-        "price": "Number",
-        "description": "String",
-        "createdAt": "Datetime",
-        "updatedAt": "Datetime"
-    },
-    "Subscription": {
-        "client": "User",
-        "membership": "Membership",
-        "autoRenewal": "Boolean",
-        "startDate": "Date",
-        "endDate": "Date",
-        "status": "enum('pending', 'paid', 'active', 'inActive')",
+        "trainer":"User",
+        "role": "enum('trainer', 'client')",
         "createdAt": "Datetime",
         "updatedAt": "Datetime"
     },
     "CheckInLog": {
         "user": "User",
-        "fitnessCenter": "FitnessCenter",
-        "subscription": "Subscription",
         "checkInTime": "Datetime",
         "checkOutTime": "Datetime",
         "duration": "Number",
