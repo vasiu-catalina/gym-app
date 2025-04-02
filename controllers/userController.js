@@ -14,6 +14,18 @@ const getUser = async (req, res) => {
     }
 };
 
+const deleteUser = async (req, res) => {
+    try {
+        await userService.deleteUser(req.params.userId);
+        res.status(204).send();
+    } catch (err) {
+        res.status(err.statusCode || 500).json({
+            message: err.message || "Internal server error",
+        });
+    }
+};
+
 module.exports = {
     getUser,
+    deleteUser,
 };
