@@ -1,3 +1,4 @@
+const userDto = require("../dto/userDto");
 const userService = require("../services/userService");
 
 const getUser = async (req, res) => {
@@ -5,7 +6,7 @@ const getUser = async (req, res) => {
         const user = await userService.getUser(req.params.userId);
         res.status(200).json({
             message: "User found",
-            user,
+            user: userDto(user),
         });
     } catch (err) {
         res.status(err.statusCode || 500).json({
@@ -30,7 +31,7 @@ const updateUser = async (req, res) => {
         const updatedUser = await userService.updateUser(req.params.userId, req.body);
         res.status(200).json({
             message: "User updated",
-            user: updatedUser,
+            user: userDto(updatedUser),
         });
     } catch (err) {
         res.status(err.statusCode || 500).json({
