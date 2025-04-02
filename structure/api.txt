@@ -4,8 +4,8 @@ Update - PUT (intreg) or PATCH (partial)
 Delete - DELETE 
 
 Auth
-POST /auth/login
-POST /auth/register
+* POST /auth/login
+* POST /auth/register
 POST /auth/forgot-password
 PUT /auth/reset-password
 POST /auth/logout
