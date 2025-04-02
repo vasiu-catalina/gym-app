@@ -4,9 +4,17 @@ const jwt = require("jsonwebtoken");
 const CustomError = require("../common/CustomError");
 const User = require("../models/User");
 
+const getAccessToken = (payload) => {
+    const { JWT_SECRET } = process.env;
+
+    const token = jwt.sign(payload, JWT_SECRET, { expiresIn: "24h" });
+
+    return token;
+};
+
 const register = async (data) => {
     const { firstname, lastname, birthDate, email, password, phone, role } = data;
-    const existingUser = await User.findOne({ $or: [{email}, {phone}] });
+    const existingUser = await User.findOne({ $or: [{ email }, { phone }] });
 
     if (existingUser) {
         throw new CustomError("Email or phone already exists", 409);
@@ -24,18 +32,39 @@ const register = async (data) => {
         role,
     });
 
-    const { JWT_SECRET } = process.env;
     const payload = {
         sub: user._id,
         email: user.email,
         role: user.role,
     };
 
-    const token = jwt.sign(payload, JWT_SECRET, { expiresIn: "24h" });
+    return getAccessToken(payload);
+};
 
-    return token;
+const login = async (data) => {
+    const { email, password } = data;
+    const existingUser = await User.findOne({ email });
+
+    if (!existingUser) {
+        throw new CustomError("User does not exist", 404);
+    }
+
+    const isCorrectPassword = await bcrypt.compare(password, existingUser.password);
+
+    if (!isCorrectPassword) {
+        throw new CustomError("Incorrect password", 401);
+    }
+
+    const payload = {
+        sub: existingUser._id,
+        email: existingUser.email,
+        role: existingUser.role,
+    };
+
+    return getAccessToken(payload);
 };
 
 module.exports = {
     register,
+    login,
 };
