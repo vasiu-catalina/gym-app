@@ -19,7 +19,30 @@ const deleteUser = async (userId) => {
     }
 };
 
+const updateUser = async (userId, data) => {
+    const { firstname, lastname, birthDate, email, phone } = data;
+
+    const existingUser = await User.findOne({ $or: [{ email }, { phone }] });
+
+    if (existingUser) {
+        throw new CustomError("Email or phone already exists", 409);
+    }
+
+    const updatedUser = await User.findByIdAndUpdate(
+        userId,
+        { $set: { firstname, lastname, birthDate, email, phone } },
+        { new: true }
+    );
+
+    if (!updatedUser) {
+        throw new CustomError("User does not exist", 404);
+    }
+
+    return updatedUser;
+};
+
 module.exports = {
     getUser,
     deleteUser,
+    updateUser,
 };
