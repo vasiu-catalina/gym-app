@@ -22,7 +22,10 @@ const deleteUser = async (userId) => {
 const updateUser = async (userId, data) => {
     const { firstname, lastname, birthDate, email, phone } = data;
 
-    const existingUser = await User.findOne({ $or: [{ email }, { phone }] });
+    const existingUser = await User.findOne({
+        $or: [{ email }, { phone }],
+        _id: { $ne: userId },
+    });
 
     if (existingUser) {
         throw new CustomError("Email or phone already exists", 409);
