@@ -9,6 +9,12 @@ const createLog = async (userId, log) => {
     return checkInLog;
 };
 
+const getAll = async (userId) => {
+    const logs = await CheckInLog.find({ user: userId });
+    return logs;
+};
+
 module.exports = {
     createLog,
+    getAll,
 };

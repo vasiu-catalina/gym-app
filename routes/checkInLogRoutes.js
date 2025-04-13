@@ -7,5 +7,6 @@ const router = express.Router();
 router.use(authMiddleware);
 
 router.post("/:userId/check-in-logs", checkInLogController.createLog);
+router.get("/:userId/check-in-logs", checkInLogController.getAll);
 
 module.exports = router;

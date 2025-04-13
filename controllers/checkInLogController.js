@@ -13,6 +13,18 @@ const createLog = async (req, res) => {
     }
 };
 
+const getAll = async (req, res) => {
+    try {
+        const logs = await checkInLogService.getAll(req.params.userId);
+        res.status(200).json({ checkInLogs: logs.map(checkInLogDto) });
+    } catch (err) {
+        res.status(err.statusCode || 500).json({
+            message: err.message || "Unknown error occured",
+        });
+    }
+};
+
 module.exports = {
     createLog,
+    getAll
 };
