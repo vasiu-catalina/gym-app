@@ -8,5 +8,6 @@ router.use(authMiddleware);
 
 router.post("/:userId/check-in-logs", checkInLogController.createLog);
 router.get("/:userId/check-in-logs", checkInLogController.getAll);
+router.get("/:userId/check-in-logs/:logId", checkInLogController.updateLog);
 
 module.exports = router;

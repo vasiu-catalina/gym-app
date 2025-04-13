@@ -14,7 +14,20 @@ const getAll = async (userId) => {
     return logs;
 };
 
+const updateLog = async (logId, userId, log) => {
+    const updated = await CheckInLog.findOneAndUpdate(
+        { _id: logId, user: userId },
+        {
+            $set: { start: log.start, end: log.end },
+        },
+        { new: true }
+    );
+
+    return updated;
+};
+
 module.exports = {
     createLog,
     getAll,
+    updateLog,
 };
