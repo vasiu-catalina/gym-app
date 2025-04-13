@@ -13,10 +13,8 @@
     },
     "CheckInLog": {
         "user": "User",
-        "checkInTime": "Datetime",
-        "checkOutTime": "Datetime",
-        "duration": "Number",
-        "status": "enum('checked_in', 'checked_out')",
+        "start": "Datetime",
+        "end": "Datetime",
         "createdAt": "Datetime",
         "updatedAt": "Datetime"
     },

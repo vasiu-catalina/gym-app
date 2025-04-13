@@ -11,14 +11,14 @@ PUT /auth/reset-password
 POST /auth/logout
 
 User
-GET /users/:userId
-PATCH /users/:userId
-DELETE /users/:userId
+* GET /users/:userId
+* PATCH /users/:userId
+* DELETE /users/:userId
 
 CheckInLog
-POST /users/:userId/check-in-logs/date/:date
+POST /users/:userId/check-in-logs
 GET /users/:userId/check-in-logs
-GET /users/:userId/check-in-logs/date/:date
+GET /users/:userId/check-in-logs/:checkInLogId
 
 WorkoutLog
 POST /users/:userId/workout-logs

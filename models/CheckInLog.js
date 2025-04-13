@@ -2,11 +2,9 @@ const mongoose = require("mongoose");
 
 const checkInLogSchema = new mongoose.Schema(
     {
-        user:{type:mongoose.Schema.Types.ObjectId, ref:"User"},
-        duration: { type: Number, required: true, min:0 },
-        checkInTime: { type: Date, required: true },
-        checkOutTime: { type: Date, required: true },
-        status: { type: String, enum: ["checked_in", "checked_out"] },
+        user: { type: mongoose.Schema.Types.ObjectId, ref: "User" },
+        start: { type: Date, required: true },
+        end: { type: Date, required: true },
     },
     {
         timestamps: true,
