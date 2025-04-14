@@ -14,6 +14,8 @@ const create = async (userId, data) => {
 
 const getAll = async (userId) => await Measurement.find({ user: userId }).sort({ date: -1 });
 
+const getAllByType = async (userId, type) => await Measurement.find({ user: userId, type }).sort({ date: -1 });
+
 const getAllByDate = async (userId, date) => {
     const start = new Date(date);
     const end = new Date(date);
@@ -24,5 +26,6 @@ const getAllByDate = async (userId, date) => {
 module.exports = {
     create,
     getAll,
+    getAllByType,
     getAllByDate,
 };
