@@ -1,3 +1,4 @@
+const CustomError = require("../common/CustomError");
 const Measurement = require("../models/Measurement");
 
 const create = async (userId, data) => {
@@ -23,9 +24,26 @@ const getAllByDate = async (userId, date) => {
     return await Measurement.find({ user: userId, date: { $gte: start, $lt: end } }).sort({ date: -1 });
 };
 
+const update = async (id, userId, measurement) => {
+    const data = {
+        type: measurement.type,
+        unit: measurement.unit,
+        value: measurement.value,
+        date: measurement.date,
+    };
+    const updated = await Measurement.findOneAndUpdate({ _id: id, user: userId }, { $set: data }, { new: true });
+
+    if (!updated) {
+        throw new CustomError("Measurement not found", 404);
+    }
+
+    return updated;
+};
+
 module.exports = {
     create,
     getAll,
     getAllByType,
     getAllByDate,
+    update
 };

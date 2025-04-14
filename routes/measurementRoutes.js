@@ -9,5 +9,6 @@ router.post("/:userId/measurements", measurementController.create);
 router.get("/:userId/measurements", measurementController.getAll);
 router.get("/:userId/measurements/date/:date", measurementController.getAllByDate);
 router.get("/:userId/measurements/type/:type", measurementController.getAllByType);
+router.patch("/:userId/measurements/:id", measurementController.update);
 
 module.exports = router;
