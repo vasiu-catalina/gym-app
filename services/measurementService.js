@@ -12,4 +12,9 @@ const create = async (userId, data) => {
     return measurement;
 };
 
-module.exports = { create };
+const getAll = async (userId) => await Measurement.find({ user: userId }).sort({ date: -1 });
+
+module.exports = {
+    create,
+    getAll,
+};

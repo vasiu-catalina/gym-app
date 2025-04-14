@@ -31,6 +31,7 @@ DELETE /users/:userId/workout-logs/:workoutLogId
 Measurement
 POST /users/:userId/measurements
 GET /users/:userId/measurements
+GET /users/:userId/measurements/type/:type
 GET /users/:userId/measurements/:measurementId
 PATCH /users/:userId/measurements/:measurementId
 DELETE /users/:userId/measurements/:measurementId

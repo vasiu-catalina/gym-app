@@ -16,6 +16,22 @@ const create = async (req, res) => {
     }
 };
 
+const getAll = async (req, res) => {
+    try {
+        const measurements = await measurementService.getAll(req.params.userId);
+
+        res.status(200).json({
+            message: "Measurements retrieved",
+            measurements: measurements.map(measurementDto),
+        });
+    } catch (err) {
+        res.status(err.statusCode || 500).json({
+            message: err.message || "An unknown error occured",
+        });
+    }
+};
+
 module.exports = {
     create,
+    getAll,
 };
