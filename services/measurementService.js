@@ -40,10 +40,18 @@ const update = async (id, userId, measurement) => {
     return updated;
 };
 
+const remove = async (id, userId) => {
+    const deleted = await Measurement.findOneAndDelete({ _id: id, user: userId });
+    if (!deleted) {
+        throw new CustomError("Measurement not found", 404);
+    }
+};
+
 module.exports = {
     create,
     getAll,
     getAllByType,
     getAllByDate,
-    update
+    update,
+    remove,
 };

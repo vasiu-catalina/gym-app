@@ -76,10 +76,22 @@ const update = async (req, res) => {
     }
 };
 
+const remove = async (req, res) => {
+    try {
+       await measurementService.remove(req.params.id, req.params.userId, req.body);
+        res.status(204).send();
+    } catch (err) {
+        res.status(err.statusCode || 500).json({
+            message: err.message || "An unknown error occured",
+        });
+    }
+};
+
 module.exports = {
     create,
     getAll,
     getAllByType,
     getAllByDate,
     update,
+    remove,
 };
