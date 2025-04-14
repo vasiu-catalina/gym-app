@@ -38,9 +38,11 @@
         "updatedAt": "Datetime"
     },
     "Measurement": {
-        "type": "enum('Biceps','Triceps','Forearm','Chest','Waist','Hips','Quads','Calf','Shoulders','Back','Glutes','Abdomen','Weight')",
-        "unit": "enum('kg', 'cm')",
+        "user": "User",
         "date": "Datetime",
+        "unit": "enum('kg', 'cm')",
+        "value":"Number",
+        "type": "enum('Biceps','Triceps','Forearm','Chest','Waist','Hips','Quads','Calf','Shoulders','Back','Glutes','Abdomen','Weight')",
         "createdAt": "Datetime",
         "updatedAt": "Datetime"
     },
