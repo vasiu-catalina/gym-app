@@ -7,5 +7,6 @@ const router = express.Router();
 router.use(authMiddleware);
 router.post("/:userId/measurements", measurementController.create);
 router.get("/:userId/measurements", measurementController.getAll);
+router.get("/:userId/measurements/date/:date", measurementController.getAllByDate);
 
 module.exports = router;

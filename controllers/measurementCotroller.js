@@ -31,7 +31,23 @@ const getAll = async (req, res) => {
     }
 };
 
+const getAllByDate = async (req, res) => {
+    try {
+        const measurements = await measurementService.getAllByDate(req.params.userId, req.params.date);
+
+        res.status(200).json({
+            message: "Measurements retrieved",
+            measurements: measurements.map(measurementDto),
+        });
+    } catch (err) {
+        res.status(err.statusCode || 500).json({
+            message: err.message || "An unknown error occured",
+        });
+    }
+};
+
 module.exports = {
     create,
     getAll,
+    getAllByDate
 };
