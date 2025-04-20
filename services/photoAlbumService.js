@@ -1,8 +1,24 @@
 const fs = require("fs").promises;
 const path = require("path");
 const CustomError = require("../common/CustomError");
-const photoAlbumDto = require("../dto/photoAlbumDto");
 const PhotoAlbum = require("../models/PhotoAlbum");
+
+const deleteFiles = async (filePaths) => {
+    try {
+        await Promise.all(
+            filePaths.map(async (filePath) => {
+                try {
+                    await fs.unlink(filePath);
+                    console.log(`Deleted: ${filePath}`);
+                } catch (err) {
+                    console.warn(`Failed to delete ${filePath}:`, err.message);
+                }
+            })
+        );
+    } catch (err) {
+        console.error("Error deleting files:", err.message);
+    }
+};
 
 const createAlbum = async (userId, data) => {
     const photoAlbum = await PhotoAlbum.create({
@@ -64,4 +80,12 @@ const deleteImage = async (albumId, userId, imageId) => {
     return await album.save();
 };
 
-module.exports = { createAlbum, getAllAlbums, getAlbum, renameAlbum, uploadImage, deleteImage };
+const deleteAlbum = async (id, userId) => {
+    const album = await getAlbum(id, userId);
+    const images = album.images.map((img) => path.join(__dirname, "../public/uploads", img.filename));
+
+    await deleteFiles(images);
+    return await album.deleteOne();
+};
+
+module.exports = { createAlbum, getAllAlbums, getAlbum, renameAlbum, uploadImage, deleteImage, deleteAlbum };

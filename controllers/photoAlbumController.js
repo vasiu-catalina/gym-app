@@ -85,4 +85,15 @@ const deleteImage = async (req, res) => {
     }
 };
 
-module.exports = { createAlbum, getAllAlbums, getAlbum, renameAlbum, uploadImage, deleteImage };
+const deleteAlbum = async (req, res) => {
+    try {
+        const album = await photoAlbumService.deleteAlbum(req.params.albumId, req.params.userId);
+        res.status(204).send();
+    } catch (err) {
+        res.status(err.statusCode || 500).json({
+            message: err.message || "An unknown error occured",
+        });
+    }
+};
+
+module.exports = { createAlbum, getAllAlbums, getAlbum, renameAlbum, uploadImage, deleteImage, deleteAlbum };
