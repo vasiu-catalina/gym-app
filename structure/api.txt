@@ -39,9 +39,9 @@ Measurement
 GymPlan
 * POST /users/:userId/gym-plans
 POST /users/:userId/gym-plans/generate
-GET /users/:userId/gym-plans
-GET /users/:userId/gym-plans/:gymPlanId
-PATCH /users/:userId/gym-plans/:gymPlanId
+* GET /users/:userId/gym-plans
+* GET /users/:userId/gym-plans/:gymPlanId
+* PUT /users/:userId/gym-plans/:gymPlanId
 DELETE /users/:userId/gym-plans/:gymPlanId
 
 PhotoAlbum

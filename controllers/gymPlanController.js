@@ -43,8 +43,23 @@ const getGymPlan = async (req, res) => {
     }
 };
 
+const updateGymPlan = async (req, res) => {
+    try {
+        const gymPlan = await gymPlanService.updateGymPlan(req.params.planId, req.params.userId, req.body);
+        res.status(200).json({
+            message: "Gym plan updated",
+            gymPlan: gymPlanDto(gymPlan),
+        });
+    } catch (err) {
+        res.status(err.statusCode || 500).json({
+            message: err.message || "An unknown error occured",
+        });
+    }
+};
+
 module.exports = {
     createPlan,
     getUsersGymPlans,
     getGymPlan,
+    updateGymPlan,
 };
