@@ -37,7 +37,7 @@ Measurement
 * DELETE /users/:userId/measurements/:measurementId
 
 GymPlan
-POST /users/:userId/gym-plans
+* POST /users/:userId/gym-plans
 POST /users/:userId/gym-plans/generate
 GET /users/:userId/gym-plans
 GET /users/:userId/gym-plans/:gymPlanId

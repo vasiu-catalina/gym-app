@@ -23,4 +23,9 @@ const createPlan = async (userId, data) => {
     return gymPlan;
 };
 
-module.exports = { createPlan };
+const getUsersGymPlans = async (userId) => {
+    const gymPlans = await GymPlan.find({ user: userId });
+    return gymPlans;
+};
+
+module.exports = { createPlan, getUsersGymPlans };

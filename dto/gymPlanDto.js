@@ -17,7 +17,7 @@ const day = (d) => {
     };
 };
 
-module.exports = (g) => {
+const gymPlanDto = (g) => {
     return {
         name: g.name,
         description: g.description,
@@ -27,3 +27,16 @@ module.exports = (g) => {
         days: g.days.map(day),
     };
 };
+
+const gymPlanSimpleDto = (g) => {
+    return {
+        name: g.name,
+        description: g.description,
+        startDate: g.startDate,
+        endDate: g.endDate,
+        nrWeeks: g.nrWeeks,
+        days: g.days.length,
+    };
+};
+
+module.exports = { gymPlanDto, gymPlanSimpleDto };

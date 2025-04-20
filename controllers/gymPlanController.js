@@ -1,4 +1,4 @@
-const gymPlanDto = require("../dto/gymPlanDto");
+const { gymPlanDto, gymPlanSimpleDto } = require("../dto/gymPlanDto");
 const gymPlanService = require("../services/gymPlanService");
 
 const createPlan = async (req, res) => {
@@ -15,6 +15,21 @@ const createPlan = async (req, res) => {
     }
 };
 
+const getUsersGymPlans = async (req, res) => {
+    try {
+        const gymPlans = await gymPlanService.getUsersGymPlans(req.params.userId);
+        res.status(201).json({
+            message: "Gym plans retrieved",
+            gymPlans: gymPlans.map(gymPlanSimpleDto),
+        });
+    } catch (err) {
+        res.status(err.statusCode || 500).json({
+            message: err.message || "An unknown error occured",
+        });
+    }
+};
+
 module.exports = {
     createPlan,
+    getUsersGymPlans,
 };
