@@ -1,3 +1,4 @@
+const CustomError = require("../common/CustomError");
 const photoAlbumDto = require("../dto/photoAlbumDto");
 const PhotoAlbum = require("../models/PhotoAlbum");
 
@@ -14,4 +15,10 @@ const getAllAlbums = async (userId) => {
     return albums;
 };
 
-module.exports = { createAlbum, getAllAlbums };
+const getAlbum = async (id, userId) => {
+    const album = await PhotoAlbum.findOne({_id: id, user: userId});
+    if (!album) throw new CustomError('Abum not found', 404);
+    return album;
+};
+
+module.exports = { createAlbum, getAllAlbums, getAlbum };
