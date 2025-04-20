@@ -6,6 +6,7 @@ const userRoutes = require("./routes/userRoutes");
 const checkInLogRoutes = require("./routes/checkInLogRoutes");
 const measurementRoutes = require("./routes/measurementRoutes");
 const photoAlbumRoutes = require("./routes/photoAlbumRoutes");
+const gymPlanRoutes = require("./routes/gymPlanRoutes");
 const { createDir } = require("./common/functions");
 
 const uploadDir = path.join(__dirname, 'public', 'uploads');
@@ -16,7 +17,7 @@ const app = express();
 app.use(express.json());
 
 app.use("/auth", authRoutes);
-app.use("/users", userRoutes, checkInLogRoutes, measurementRoutes, photoAlbumRoutes);
+app.use("/users", userRoutes, checkInLogRoutes, measurementRoutes, photoAlbumRoutes, gymPlanRoutes);
 
 db.connect().then(() => {
     app.listen(3000, () => {

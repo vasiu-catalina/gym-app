@@ -14,11 +14,11 @@ const gymPlanSchema = new mongoose.Schema(
                 exercises: [
                     {
                         name: { type: String, required: true },
-                        nrSets: { type: Number, min: 0 },
-                        nrReps: { type: Number, min: 0 },
-                        duration: { type: Number, min: 0 },
-                    }
-                ]
+                        nrSets: { type: Number, default: null },
+                        nrReps: { type: Number, default: null },
+                        duration: { type: Number, default: null },
+                    },
+                ],
             },
         ],
     },
