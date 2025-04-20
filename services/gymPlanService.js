@@ -2,6 +2,7 @@ const GymPlan = require("../models/GymPlan");
 
 const createPlan = async (userId, data) => {
     const gymPlan = await GymPlan.create({
+        user: userId,
         name: data.name,
         description: data.description,
         startDate: data.startDate,
