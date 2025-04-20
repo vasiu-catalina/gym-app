@@ -1,3 +1,4 @@
+const CustomError = require("../common/CustomError");
 const GymPlan = require("../models/GymPlan");
 
 const createPlan = async (userId, data) => {
@@ -28,4 +29,10 @@ const getUsersGymPlans = async (userId) => {
     return gymPlans;
 };
 
-module.exports = { createPlan, getUsersGymPlans };
+const getGymPlan = async (id, userId) => {
+    const gymPlan = await GymPlan.findOne({ _id: id, user: userId });
+    if (!gymPlan) throw new CustomError("Gym plan not found", 404);
+    return gymPlan;
+};
+
+module.exports = { createPlan, getUsersGymPlans, getGymPlan };

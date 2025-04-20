@@ -29,7 +29,22 @@ const getUsersGymPlans = async (req, res) => {
     }
 };
 
+const getGymPlan = async (req, res) => {
+    try {
+        const gymPlan = await gymPlanService.getGymPlan(req.params.planId, req.params.userId);
+        res.status(200).json({
+            message: "Gym plan retrieved",
+            gymPlan: gymPlanDto(gymPlan),
+        });
+    } catch (err) {
+        res.status(err.statusCode || 500).json({
+            message: err.message || "An unknown error occured",
+        });
+    }
+};
+
 module.exports = {
     createPlan,
     getUsersGymPlans,
+    getGymPlan,
 };

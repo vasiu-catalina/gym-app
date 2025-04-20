@@ -19,6 +19,7 @@ const day = (d) => {
 
 const gymPlanDto = (g) => {
     return {
+        id: g._id,
         name: g.name,
         description: g.description,
         startDate: g.startDate,
@@ -30,6 +31,7 @@ const gymPlanDto = (g) => {
 
 const gymPlanSimpleDto = (g) => {
     return {
+        id: g._id,
         name: g.name,
         description: g.description,
         startDate: g.startDate,
