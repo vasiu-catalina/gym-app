@@ -2,11 +2,11 @@ const imageDto = (i) => {
     return {
         id: i._id,
         filename: i.filename,
-        createdAt: i.createdAt,
+        date: i.date,
     };
 };
 
-module.exports = (a) => {
+const albumDto = (a) => {
     return {
         id: a._id,
         name: a.name,
@@ -16,3 +16,5 @@ module.exports = (a) => {
         updatedAt: a.updatedAt,
     };
 };
+
+module.exports = { albumDto, imageDto };

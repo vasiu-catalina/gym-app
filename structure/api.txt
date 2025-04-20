@@ -16,10 +16,10 @@ User
 * DELETE /users/:userId
 
 CheckInLog
-POST /users/:userId/check-in-logs
-GET /users/:userId/check-in-logs
-PATCH /users/:userId/check-in-logs/:checkInLogId
-DELETE /users/:userId/check-in-logs/:checkInLogId
+* POST /users/:userId/check-in-logs
+* GET /users/:userId/check-in-logs
+* PATCH /users/:userId/check-in-logs/:checkInLogId
+* DELETE /users/:userId/check-in-logs/:checkInLogId
 
 WorkoutLog
 POST /users/:userId/workout-logs
@@ -29,13 +29,12 @@ PATCH /users/:userId/workout-logs/:workoutLogId
 DELETE /users/:userId/workout-logs/:workoutLogId
 
 Measurement
-POST /users/:userId/measurements
-GET /users/:userId/measurements
-GET /users/:userId/measurements/date/:date
-GET /users/:userId/measurements/type/:type
-GET /users/:userId/measurements/:measurementId
-PATCH /users/:userId/measurements/:measurementId
-DELETE /users/:userId/measurements/:measurementId
+* POST /users/:userId/measurements
+* GET /users/:userId/measurements
+* GET /users/:userId/measurements/date/:date
+* GET /users/:userId/measurements/type/:type
+* PATCH /users/:userId/measurements/:measurementId
+* DELETE /users/:userId/measurements/:measurementId
 
 GymPlan
 POST /users/:userId/gym-plans
@@ -45,10 +44,12 @@ PATCH /users/:userId/gym-plans/:gymPlanId
 DELETE /users/:userId/gym-plans/:gymPlanId
 
 PhotoAlbum
-POST /users/:userId/photo-albums
-GET /users/:userId/photo-albums/:photoAlbumId
-PATCH /users/:userId/photo-albums/:photoAlbumId
-DELETE /users/:userId/photo-albums/:photoAlbumId
+* POST /users/:userId/photo-albums
+* GET /users/:userId/photo-albums/:albumId
+* PATCH /users/:userId/photo-albums/:albumId
+DELETE /users/:userId/photo-albums/:albumId
+POST /users/:userId/photo-albums/:albumId/images
+DELETE /users/:userId/photo-albums/:albumId/images/:imageId
 
 Trainer
 GET /admin/clients

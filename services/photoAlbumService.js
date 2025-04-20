@@ -31,4 +31,18 @@ const renameAlbum = async (id, userId, data) => {
     return album;
 };
 
-module.exports = { createAlbum, getAllAlbums, getAlbum, renameAlbum };
+const uploadImage = async (id, userId, data, file) => {
+    const album = await getAlbum(id, userId);
+
+    const image = {
+        filename: file.filename,
+        date: data.date,
+    };
+
+    album.images.push(image);
+    album.images.sort((a, b) => new Date(b.date) - new Date(a.date));
+
+    return await album.save();
+};
+
+module.exports = { createAlbum, getAllAlbums, getAlbum, renameAlbum, uploadImage };

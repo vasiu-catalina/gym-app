@@ -1,3 +1,4 @@
+const path = require('path');
 const express = require("express");
 const db = require("./db");
 const authRoutes = require("./routes/authRoutes");
@@ -5,6 +6,10 @@ const userRoutes = require("./routes/userRoutes");
 const checkInLogRoutes = require("./routes/checkInLogRoutes");
 const measurementRoutes = require("./routes/measurementRoutes");
 const photoAlbumRoutes = require("./routes/photoAlbumRoutes");
+const { createDir } = require("./common/functions");
+
+const uploadDir = path.join(__dirname, 'public', 'uploads');
+createDir(uploadDir);
 
 const app = express();
 

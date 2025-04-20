@@ -1,4 +1,4 @@
-const photoAlbumDto = require("../dto/photoAlbumDto");
+const { albumDto, imageDto } = require("../dto/photoAlbumDto");
 const photoAlbumService = require("../services/photoAlbumService");
 
 const createAlbum = async (req, res) => {
@@ -6,7 +6,7 @@ const createAlbum = async (req, res) => {
         const album = await photoAlbumService.createAlbum(req.params.userId, req.body);
         res.status(201).json({
             message: "Album created",
-            album: photoAlbumDto(album),
+            album: albumDto(album),
         });
     } catch (err) {
         res.status(err.statusCode || 500).json({
@@ -20,7 +20,7 @@ const getAllAlbums = async (req, res) => {
         const albums = await photoAlbumService.getAllAlbums(req.params.userId);
         res.status(200).json({
             message: "Albums retrieved",
-            albums: albums.map(photoAlbumDto),
+            albums: albums.map(albumDto),
         });
     } catch (err) {
         res.status(err.statusCode || 500).json({
@@ -34,7 +34,7 @@ const getAlbum = async (req, res) => {
         const album = await photoAlbumService.getAlbum(req.params.albumId, req.params.userId);
         res.status(200).json({
             message: "Album retrieved",
-            album: photoAlbumDto(album),
+            album: albumDto(album),
         });
     } catch (err) {
         res.status(err.statusCode || 500).json({
@@ -48,7 +48,7 @@ const renameAlbum = async (req, res) => {
         const album = await photoAlbumService.renameAlbum(req.params.albumId, req.params.userId, req.body);
         res.status(200).json({
             message: "Album renamed",
-            album: photoAlbumDto(album),
+            album: albumDto(album),
         });
     } catch (err) {
         res.status(err.statusCode || 500).json({
@@ -57,4 +57,18 @@ const renameAlbum = async (req, res) => {
     }
 };
 
-module.exports = { createAlbum, getAllAlbums, getAlbum, renameAlbum };
+const uploadImage = async (req, res) => {
+    try {
+        const album = await photoAlbumService.uploadImage(req.params.albumId, req.params.userId, req.body, req.file);
+        res.status(200).json({
+            message: "Image uploaded",
+            album: albumDto(album),
+        });
+    } catch (err) {
+        res.status(err.statusCode || 500).json({
+            message: err.message || "An unknown error occured",
+        });
+    }
+};
+
+module.exports = { createAlbum, getAllAlbums, getAlbum, renameAlbum, uploadImage };
