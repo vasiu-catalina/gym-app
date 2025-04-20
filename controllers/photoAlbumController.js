@@ -71,9 +71,9 @@ const uploadImage = async (req, res) => {
     }
 };
 
-const deleteImage = async (req, res) => {
+const deleteImages = async (req, res) => {
     try {
-        const album = await photoAlbumService.deleteImage(req.params.albumId, req.params.userId, req.params.imageId);
+        const album = await photoAlbumService.deleteImages(req.params.albumId, req.params.userId, req.body.imageIds);
         res.status(200).json({
             message: "Image deleted",
             album: albumDto(album),
@@ -96,4 +96,4 @@ const deleteAlbum = async (req, res) => {
     }
 };
 
-module.exports = { createAlbum, getAllAlbums, getAlbum, renameAlbum, uploadImage, deleteImage, deleteAlbum };
+module.exports = { createAlbum, getAllAlbums, getAlbum, renameAlbum, uploadImage, deleteImages, deleteAlbum };

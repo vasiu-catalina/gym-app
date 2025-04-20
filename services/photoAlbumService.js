@@ -35,7 +35,7 @@ const getAllAlbums = async (userId) => {
 
 const getAlbum = async (id, userId) => {
     const album = await PhotoAlbum.findOne({ _id: id, user: userId });
-    if (!album) throw new CustomError("Abum not found", 404);
+    if (!album) throw new CustomError("Album not found", 404);
     return album;
 };
 
@@ -45,7 +45,7 @@ const renameAlbum = async (id, userId, data) => {
         { $set: { name: data.name } },
         { new: true }
     );
-    if (!album) throw new CustomError("Abum not found", 404);
+    if (!album) throw new CustomError("Album not found", 404);
     return album;
 };
 
@@ -63,20 +63,16 @@ const uploadImage = async (id, userId, data, file) => {
     return await album.save();
 };
 
-const deleteImage = async (albumId, userId, imageId) => {
+const deleteImages = async (albumId, userId, imageIds) => {
     const album = await getAlbum(albumId, userId);
 
-    const image = album.images.find((img) => img._id.toString() === imageId);
-    if (!image) throw new CustomError("Image not found", 404);
+    const images = album.images
+        .filter((img) => imageIds.includes(img._id.toString()))
+        .map((img) => path.join(__dirname, "../public/uploads", img.filename));
 
-    const filePath = path.join(__dirname, "../public/uploads", image.filename);
-    try {
-        await fs.unlink(filePath);
-    } catch (err) {
-        console.log(err);
-    }
+    await deleteFiles(images);
 
-    album.images = album.images.filter((img) => img && img._id.toString() !== imageId);
+    album.images = album.images.filter((img) => !imageIds.includes(img._id.toString()));
     return await album.save();
 };
 
@@ -88,4 +84,4 @@ const deleteAlbum = async (id, userId) => {
     return await album.deleteOne();
 };
 
-module.exports = { createAlbum, getAllAlbums, getAlbum, renameAlbum, uploadImage, deleteImage, deleteAlbum };
+module.exports = { createAlbum, getAllAlbums, getAlbum, renameAlbum, uploadImage, deleteImages, deleteAlbum };

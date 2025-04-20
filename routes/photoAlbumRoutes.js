@@ -11,6 +11,6 @@ router.patch("/:userId/photo-albums/:albumId", photoAlbumController.renameAlbum)
 router.delete("/:userId/photo-albums/:albumId", photoAlbumController.deleteAlbum);
 
 router.post("/:userId/photo-albums/:albumId/images", upload.single("image"), photoAlbumController.uploadImage);
-router.delete("/:userId/photo-albums/:albumId/images/:imageId", photoAlbumController.deleteImage);
+router.put("/:userId/photo-albums/:albumId/images", photoAlbumController.deleteImages);
 
 module.exports = router;
