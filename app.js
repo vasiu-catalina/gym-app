@@ -4,14 +4,14 @@ const authRoutes = require("./routes/authRoutes");
 const userRoutes = require("./routes/userRoutes");
 const checkInLogRoutes = require("./routes/checkInLogRoutes");
 const measurementRoutes = require("./routes/measurementRoutes");
-
+const photoAlbumRoutes = require("./routes/photoAlbumRoutes");
 
 const app = express();
 
 app.use(express.json());
 
 app.use("/auth", authRoutes);
-app.use("/users", userRoutes, checkInLogRoutes, measurementRoutes);
+app.use("/users", userRoutes, checkInLogRoutes, measurementRoutes, photoAlbumRoutes);
 
 db.connect().then(() => {
     app.listen(3000, () => {
