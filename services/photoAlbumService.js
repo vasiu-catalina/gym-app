@@ -1,3 +1,5 @@
+const fs = require("fs").promises;
+const path = require("path");
 const CustomError = require("../common/CustomError");
 const photoAlbumDto = require("../dto/photoAlbumDto");
 const PhotoAlbum = require("../models/PhotoAlbum");
@@ -45,4 +47,21 @@ const uploadImage = async (id, userId, data, file) => {
     return await album.save();
 };
 
-module.exports = { createAlbum, getAllAlbums, getAlbum, renameAlbum, uploadImage };
+const deleteImage = async (albumId, userId, imageId) => {
+    const album = await getAlbum(albumId, userId);
+
+    const image = album.images.find((img) => img._id.toString() === imageId);
+    if (!image) throw new CustomError("Image not found", 404);
+
+    const filePath = path.join(__dirname, "../public/uploads", image.filename);
+    try {
+        await fs.unlink(filePath);
+    } catch (err) {
+        console.log(err);
+    }
+
+    album.images = album.images.filter((img) => img && img._id.toString() !== imageId);
+    return await album.save();
+};
+
+module.exports = { createAlbum, getAllAlbums, getAlbum, renameAlbum, uploadImage, deleteImage };
