@@ -1,7 +1,7 @@
 const CustomError = require("../common/CustomError");
 const GymPlan = require("../models/GymPlan");
 
-const createPlan = async (userId, data) => {
+const createGymPlan = async (userId, data) => {
     const gymPlan = await GymPlan.create({
         user: userId,
         name: data.name,
@@ -45,11 +45,11 @@ const updateGymPlan = async (id, userId, data) => {
                 startDate: data.startDate,
                 endDate: data.endDate,
                 nrWeeks: data.nrWeeks,
-                days: (data.days).map((day) => ({
+                days: data.days.map((day) => ({
                     _id: day.id,
                     name: day.name,
                     description: day.description,
-                    exercises: (day.exercises).map((exercise) => ({
+                    exercises: day.exercises.map((exercise) => ({
                         _id: exercise.id,
                         name: exercise.name,
                         nrSets: exercise.nrSets,
@@ -66,4 +66,9 @@ const updateGymPlan = async (id, userId, data) => {
     return gymPlan;
 };
 
-module.exports = { createPlan, getUsersGymPlans, getGymPlan, updateGymPlan };
+const deleteGymPlan = async (id, userId) => {
+    const deleted = await GymPlan.findOneAndDelete({ _id: id, user: userId });
+    if (!deleted) throw new CustomError("Gym plan not found", 404);
+};
+
+module.exports = { createGymPlan, getUsersGymPlans, getGymPlan, updateGymPlan , deleteGymPlan};

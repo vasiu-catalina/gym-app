@@ -1,9 +1,9 @@
 const { gymPlanDto, gymPlanSimpleDto } = require("../dto/gymPlanDto");
 const gymPlanService = require("../services/gymPlanService");
 
-const createPlan = async (req, res) => {
+const createGymPlan = async (req, res) => {
     try {
-        const gymPlan = await gymPlanService.createPlan(req.params.userId, req.body);
+        const gymPlan = await gymPlanService.createGymPlan(req.params.userId, req.body);
         res.status(201).json({
             message: "Gym plan created",
             gymPlan: gymPlanDto(gymPlan),
@@ -57,9 +57,21 @@ const updateGymPlan = async (req, res) => {
     }
 };
 
+const deleteGymPlan = async (req, res) => {
+    try {
+        await gymPlanService.deleteGymPlan(req.params.planId, req.params.userId);
+        res.status(204).send();
+    } catch (err) {
+        res.status(err.statusCode || 500).json({
+            message: err.message || "An unknown error occured",
+        });
+    }
+};
+
 module.exports = {
-    createPlan,
+    createGymPlan,
     getUsersGymPlans,
     getGymPlan,
     updateGymPlan,
+    deleteGymPlan,
 };
