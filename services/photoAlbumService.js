@@ -16,9 +16,19 @@ const getAllAlbums = async (userId) => {
 };
 
 const getAlbum = async (id, userId) => {
-    const album = await PhotoAlbum.findOne({_id: id, user: userId});
-    if (!album) throw new CustomError('Abum not found', 404);
+    const album = await PhotoAlbum.findOne({ _id: id, user: userId });
+    if (!album) throw new CustomError("Abum not found", 404);
     return album;
 };
 
-module.exports = { createAlbum, getAllAlbums, getAlbum };
+const renameAlbum = async (id, userId, data) => {
+    const album = await PhotoAlbum.findOneAndUpdate(
+        { _id: id, user: userId },
+        { $set: { name: data.name } },
+        { new: true }
+    );
+    if (!album) throw new CustomError("Abum not found", 404);
+    return album;
+};
+
+module.exports = { createAlbum, getAllAlbums, getAlbum, renameAlbum };

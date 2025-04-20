@@ -43,4 +43,18 @@ const getAlbum = async (req, res) => {
     }
 };
 
-module.exports = { createAlbum, getAllAlbums, getAlbum };
+const renameAlbum = async (req, res) => {
+    try {
+        const album = await photoAlbumService.renameAlbum(req.params.albumId, req.params.userId, req.body);
+        res.status(200).json({
+            message: "Album renamed",
+            album: photoAlbumDto(album),
+        });
+    } catch (err) {
+        res.status(err.statusCode || 500).json({
+            message: err.message || "An unknown error occured",
+        });
+    }
+};
+
+module.exports = { createAlbum, getAllAlbums, getAlbum, renameAlbum };
