@@ -10,5 +10,6 @@ router.post("/:userId/workout-logs", workoutLogController.createLog);
 router.get("/:userId/workout-logs", workoutLogController.getLogs);
 router.get("/:userId/workout-logs/:logId", workoutLogController.getLog);
 router.put("/:userId/workout-logs/:logId", workoutLogController.updateLog);
+router.delete("/:userId/workout-logs/:logId", workoutLogController.deleteLog);
 
 module.exports = router;

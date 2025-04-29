@@ -61,9 +61,21 @@ const updateLog = async (req, res) => {
     }
 };
 
+const deleteLog = async (req, res) => {
+    try {
+        await workoutLogService.deleteWorkoutLog(req.params.logId, req.params.userId);
+        res.status(204).send();
+    } catch (err) {
+        res.status(err.statusCode || 500).json({
+            message: err.message || "Unknown error occured",
+        });
+    }
+};
+
 module.exports = {
     createLog,
     getLogs,
     getLog,
     updateLog,
+    deleteLog,
 };

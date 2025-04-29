@@ -59,9 +59,17 @@ const updateWorkoutLog = async (logId, userId, data) => {
     return log;
 };
 
+const deleteWorkoutLog = async (logId, userId) => {
+    const log = await WorkoutLog.findOneAndDelete({ _id: logId, user: userId });
+    if (!log) {
+        throw new CustomError("Workout log not found", 404);
+    }
+};
+
 module.exports = {
     createWorkoutLog,
     getWorkoutLogs,
     getWorkoutLog,
-    updateWorkoutLog
+    updateWorkoutLog,
+    deleteWorkoutLog,
 };
