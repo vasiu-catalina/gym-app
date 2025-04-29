@@ -1,3 +1,4 @@
+const CustomError = require("../common/CustomError");
 const WorkoutLog = require("../models/WorkoutLog");
 
 const createWorkoutLog = async (userId, data) => {
@@ -24,7 +25,16 @@ const getWorkoutLogs = async (userId) => {
     return logs;
 };
 
+const getWorkoutLog = async (logId, userId) => {
+    const log = await WorkoutLog.findOne({ _id: logId, user: userId });
+    if (!log) {
+        throw new CustomError("Workout log not found", 404);
+    }
+    return log;
+};
+
 module.exports = {
     createWorkoutLog,
     getWorkoutLogs,
+    getWorkoutLog,
 };
