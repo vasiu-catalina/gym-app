@@ -19,6 +19,12 @@ const createWorkoutLog = async (userId, data) => {
     return workoutLog;
 };
 
+const getWorkoutLogs = async (userId) => {
+    const logs = await WorkoutLog.find({ user: userId });
+    return logs;
+};
+
 module.exports = {
     createWorkoutLog,
+    getWorkoutLogs,
 };

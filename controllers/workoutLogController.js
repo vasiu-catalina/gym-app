@@ -1,4 +1,4 @@
-const workoutLogDto = require("../dto/workoutLogDto");
+const { workoutLogDto, workoutLogPreviewDto } = require("../dto/workoutLogDto");
 const workoutLogService = require("../services/workoutLogService");
 
 const createLog = async (req, res) => {
@@ -16,6 +16,22 @@ const createLog = async (req, res) => {
     }
 };
 
+const getLogs = async (req, res) => {
+    try {
+        const logs = await workoutLogService.getWorkoutLogs(req.params.userId, req.body);
+
+        res.status(200).json({
+            message: "Workout log created",
+            workoutLog: logs.map(workoutLogPreviewDto),
+        });
+    } catch (err) {
+        res.status(err.statusCode || 500).json({
+            message: err.message || "Unknown error occured",
+        });
+    }
+};
+
 module.exports = {
     createLog,
+    getLogs,
 };
