@@ -10,7 +10,7 @@ Auth
 User
 * GET /users/:userId
 * PATCH /users/:userId
-PUT /auth/reset-password
+* PUT /users/:userId/change-password
 * DELETE /users/:userId
 
 WorkoutLog

@@ -1,3 +1,4 @@
+const bcrypt = require("bcrypt");
 const CustomError = require("../common/CustomError");
 const User = require("../models/User");
 
@@ -44,8 +45,19 @@ const updateUser = async (userId, data) => {
     return updatedUser;
 };
 
+const changePassword = async (user, data) => {
+    const isCorrectPassword = await bcrypt.compare(data.password, user.password);
+
+    if (!isCorrectPassword) {
+        throw new CustomError("Incorrect password", 401);
+    }
+    user.password = await bcrypt.hash(data.newPassword, 10);
+    await user.save();
+};
+
 module.exports = {
     getUser,
     deleteUser,
     updateUser,
+    changePassword,
 };
