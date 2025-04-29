@@ -3,11 +3,10 @@ const mongoose = require("mongoose");
 const workoutLogSchema = new mongoose.Schema(
     {
         user: { type: mongoose.Schema.Types.ObjectId, ref: "User" },
-        gymPlan: { type: mongoose.Schema.Types.ObjectId, ref: "GymPlan" },
-        name: { type: String, required: true },
-        description: { type: String, required: true },
+        name: { type: String, default: null },
+        description: { type: String, default: null },
         duration: { type: Number, min: 0 },
-        date: { type: Date, required: true},
+        date: { type: Date, required: true },
         exercises: [
             {
                 name: { type: String, required: true },

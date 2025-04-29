@@ -14,14 +14,8 @@ User
 * PATCH /users/:userId
 * DELETE /users/:userId
 
-CheckInLog
-* POST /users/:userId/check-in-logs
-* GET /users/:userId/check-in-logs
-* PATCH /users/:userId/check-in-logs/:checkInLogId
-* DELETE /users/:userId/check-in-logs/:checkInLogId
-
 WorkoutLog
-POST /users/:userId/workout-logs
+* POST /users/:userId/workout-logs
 GET /users/:userId/workout-logs
 GET /users/:userId/workout-logs/:workoutLogId
 PATCH /users/:userId/workout-logs/:workoutLogId
@@ -41,7 +35,7 @@ GymPlan
 * GET /users/:userId/gym-plans
 * GET /users/:userId/gym-plans/:gymPlanId
 * PUT /users/:userId/gym-plans/:gymPlanId
-DELETE /users/:userId/gym-plans/:gymPlanId
+* DELETE /users/:userId/gym-plans/:gymPlanId
 
 PhotoAlbum
 * POST /users/:userId/photo-albums
