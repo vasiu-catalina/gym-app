@@ -19,6 +19,12 @@ app.use(express.json());
 app.use("/auth", authRoutes);
 app.use("/users", userRoutes, measurementRoutes, photoAlbumRoutes, gymPlanRoutes, workoutLogRoutes);
 
+app.use((req, res) => {
+    res.status(404).json({
+        message: `Route not found: ${req.originalUrl}`,
+    });
+});
+
 db.connect().then(() => {
     app.listen(3000, () => {
         console.log("App listening on port 3000");

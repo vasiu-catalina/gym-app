@@ -6,20 +6,19 @@ Delete - DELETE
 Auth
 * POST /auth/login
 * POST /auth/register
-POST /auth/forgot-password
-PUT /auth/reset-password
 
 User
 * GET /users/:userId
 * PATCH /users/:userId
+PUT /auth/reset-password
 * DELETE /users/:userId
 
 WorkoutLog
 * POST /users/:userId/workout-logs
-GET /users/:userId/workout-logs
-GET /users/:userId/workout-logs/:workoutLogId
-PATCH /users/:userId/workout-logs/:workoutLogId
-DELETE /users/:userId/workout-logs/:workoutLogId
+* GET /users/:userId/workout-logs
+* GET /users/:userId/workout-logs/:workoutLogId
+* PATCH /users/:userId/workout-logs/:workoutLogId
+* DELETE /users/:userId/workout-logs/:workoutLogId
 
 Measurement
 * POST /users/:userId/measurements
