@@ -8,7 +8,6 @@ Auth
 * POST /auth/register
 POST /auth/forgot-password
 PUT /auth/reset-password
-POST /auth/logout
 
 User
 * GET /users/:userId
@@ -38,7 +37,7 @@ Measurement
 
 GymPlan
 * POST /users/:userId/gym-plans
-POST /users/:userId/gym-plans/generate
+* POST /users/:userId/gym-plans/generate
 * GET /users/:userId/gym-plans
 * GET /users/:userId/gym-plans/:gymPlanId
 * PUT /users/:userId/gym-plans/:gymPlanId
