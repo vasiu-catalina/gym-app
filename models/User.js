@@ -10,6 +10,8 @@ const userSchema = new mongoose.Schema(
         phone: { type: String, required: true },
         role: { type: String, enum: ["trainer", "client"] },
         gender: { type: String, enum: ["male", "femail", "other"], default: "other" },
+        uuid: { type: String, required: true },
+        trainees: [{ type: mongoose.Schema.Types.ObjectId, ref: "User" }],
     },
     {
         timestamps: true,

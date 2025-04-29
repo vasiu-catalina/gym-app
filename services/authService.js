@@ -1,5 +1,6 @@
 const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
+const { v4: uuidv4 } = require("uuid");
 
 const CustomError = require("../common/CustomError");
 const User = require("../models/User");
@@ -13,7 +14,7 @@ const getAccessToken = (payload) => {
 };
 
 const register = async (data) => {
-    const { firstname, lastname, birthDate, email, password, phone, role } = data;
+    const { firstname, lastname, birthDate, email, password, phone, role, gender } = data;
     const existingUser = await User.findOne({ $or: [{ email }, { phone }] });
 
     if (existingUser) {
@@ -30,6 +31,8 @@ const register = async (data) => {
         password: hashedPassword,
         phone,
         role,
+        gender,
+        uuid: uuidv4(),
     });
 
     const payload = {

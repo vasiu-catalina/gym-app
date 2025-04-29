@@ -21,7 +21,7 @@ const deleteUser = async (userId) => {
 };
 
 const updateUser = async (userId, data) => {
-    const { firstname, lastname, birthDate, email, phone } = data;
+    const { firstname, lastname, birthDate, email, phone, gender } = data;
 
     const existingUser = await User.findOne({
         $or: [{ email }, { phone }],
@@ -34,7 +34,7 @@ const updateUser = async (userId, data) => {
 
     const updatedUser = await User.findByIdAndUpdate(
         userId,
-        { $set: { firstname, lastname, birthDate, email, phone } },
+        { $set: { firstname, lastname, birthDate, email, phone, gender } },
         { new: true }
     );
 
