@@ -46,8 +46,24 @@ const getLog = async (req, res) => {
     }
 };
 
+const updateLog = async (req, res) => {
+    try {
+        const log = await workoutLogService.updateWorkoutLog(req.params.logId, req.params.userId, req.body);
+
+        res.status(200).json({
+            message: "Workout log updated",
+            workoutLog: workoutLogDto(log),
+        });
+    } catch (err) {
+        res.status(err.statusCode || 500).json({
+            message: err.message || "Unknown error occured",
+        });
+    }
+};
+
 module.exports = {
     createLog,
     getLogs,
     getLog,
+    updateLog,
 };

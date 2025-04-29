@@ -7,6 +7,7 @@ const workoutLogDto = (log) => {
         duration: log.duration,
         date: log.date,
         exercises: log.exercises.map((ex) => ({
+            id: ex._id,
             name: ex.name,
             setNr: ex.setNr,
             nrReps: ex.nrReps,

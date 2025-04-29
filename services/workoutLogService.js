@@ -33,8 +33,35 @@ const getWorkoutLog = async (logId, userId) => {
     return log;
 };
 
+const updateWorkoutLog = async (logId, userId, data) => {
+    const log = await WorkoutLog.findOneAndUpdate(
+        { _id: logId, user: userId },
+        {
+            $set: {
+                name: data.name,
+                description: data.description,
+                duration: data.duration,
+                date: data.date,
+                exercises: data.exercises.map((ex) => ({
+                    name: ex.name,
+                    setNr: ex.setNr,
+                    nrReps: ex.nrReps,
+                    weight: ex.weight,
+                    duration: ex.duration,
+                })),
+            },
+        },
+        { new: true, runValidators: true }
+    );
+    if (!log) {
+        throw new CustomError("Workout log not found", 404);
+    }
+    return log;
+};
+
 module.exports = {
     createWorkoutLog,
     getWorkoutLogs,
     getWorkoutLog,
+    updateWorkoutLog
 };
