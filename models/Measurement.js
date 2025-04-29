@@ -23,6 +23,7 @@ const measurementSchema = new mongoose.Schema(
                 "Glutes",
                 "Abdomen",
                 "Weight",
+                "Height",
             ],
         },
     },

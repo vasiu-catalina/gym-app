@@ -21,6 +21,7 @@ const gymPlanDto = (g) => {
     return {
         id: g._id,
         name: g.name,
+        isAiGenerated: g.isAiGenerated,
         description: g.description,
         startDate: g.startDate,
         endDate: g.endDate,
@@ -33,6 +34,7 @@ const gymPlanSimpleDto = (g) => {
     return {
         id: g._id,
         name: g.name,
+        isAiGenerated: g.isAiGenerated,
         description: g.description,
         startDate: g.startDate,
         endDate: g.endDate,

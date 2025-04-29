@@ -1,6 +1,20 @@
 const { gymPlanDto, gymPlanSimpleDto } = require("../dto/gymPlanDto");
 const gymPlanService = require("../services/gymPlanService");
 
+const generateGymPlan = async (req, res) => {
+    const gymPlan = await gymPlanService.generateGymPlan(req.user, req.body);
+    res.status(201).json({
+        message: "Gym plan generated",
+        gymPlan: gymPlanDto(gymPlan),
+    });
+    try {
+    } catch (err) {
+        res.status(err.statusCode || 500).json({
+            message: err.message || "An unknown error occured",
+        });
+    }
+};
+
 const createGymPlan = async (req, res) => {
     try {
         const gymPlan = await gymPlanService.createGymPlan(req.params.userId, req.body);
@@ -18,7 +32,7 @@ const createGymPlan = async (req, res) => {
 const getUsersGymPlans = async (req, res) => {
     try {
         const gymPlans = await gymPlanService.getUsersGymPlans(req.params.userId);
-        res.status(201).json({
+        res.status(200).json({
             message: "Gym plans retrieved",
             gymPlans: gymPlans.map(gymPlanSimpleDto),
         });
@@ -69,6 +83,7 @@ const deleteGymPlan = async (req, res) => {
 };
 
 module.exports = {
+    generateGymPlan,
     createGymPlan,
     getUsersGymPlans,
     getGymPlan,
