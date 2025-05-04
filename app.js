@@ -24,6 +24,8 @@ app.use(
 
 app.use(express.json());
 
+app.use("/images", express.static(path.join("./public", "uploads")));
+
 app.use("/auth", authRoutes);
 app.use("/users", userRoutes, measurementRoutes, photoAlbumRoutes, gymPlanRoutes, workoutLogRoutes);
 

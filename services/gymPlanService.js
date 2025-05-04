@@ -58,6 +58,8 @@ const getContentData = (user, data) => {
             preferredWorkoutDurationMinutes: data.preferredWorkoutDurationMinutes,
             availableDays: data.availableDays,
             preferredWorkoutType: data.preferredWorkoutType,
+            startDate: data.startDate,
+            endDate: data.endDate,
         },
         workoutPreferences: {
             trainingStyle: data.trainingStyle,
@@ -70,6 +72,8 @@ const getContentData = (user, data) => {
 
 const generateGymPlan = async (user, data) => {
     const response = await getOpenAiResponse(getContentData(user, data));
+
+    console.log(response);
 
     const gymPlan = await GymPlan.create({
         user: user._id,

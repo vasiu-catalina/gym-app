@@ -5,14 +5,14 @@ const gymPlanSchema = new mongoose.Schema(
         user: { type: mongoose.Schema.Types.ObjectId, ref: "User" },
         name: { type: String, required: true },
         isAiGenerated: { type: Boolean, default: false },
-        description: { type: String, required: true },
+        description: { type: String, default: "" },
         startDate: { type: Date, required: true },
         endDate: { type: Date, required: true },
         nrWeeks: { type: Number, required: true, min: 0 },
         days: [
             {
                 name: { type: String, required: true },
-                description: { type: String, required: true },
+                description: { type: String, default: "" },
                 exercises: [
                     {
                         name: { type: String, required: true },
