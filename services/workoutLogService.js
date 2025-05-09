@@ -10,10 +10,13 @@ const createWorkoutLog = async (userId, data) => {
         date: data.date,
         exercises: data.exercises.map((ex) => ({
             name: ex.name,
-            setNr: ex.setNr,
-            nrReps: ex.nrReps,
-            weight: ex.weight,
-            duration: ex.duration,
+            sets: ex.sets.map((set) => ({
+                setNr: set.setNr,
+                nrReps: set.nrReps,
+                weight: set.weight,
+                duration: set.duration,
+                completed: set.completed,
+            })),
         })),
     });
 
@@ -44,10 +47,13 @@ const updateWorkoutLog = async (logId, userId, data) => {
                 date: data.date,
                 exercises: data.exercises.map((ex) => ({
                     name: ex.name,
-                    setNr: ex.setNr,
-                    nrReps: ex.nrReps,
-                    weight: ex.weight,
-                    duration: ex.duration,
+                    sets: ex.sets.map((set) => ({
+                        setNr: set.setNr,
+                        nrReps: set.nrReps,
+                        weight: set.weight,
+                        duration: set.duration,
+                        completed: set.completed,
+                    })),
                 })),
             },
         },

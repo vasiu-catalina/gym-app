@@ -10,10 +10,15 @@ const workoutLogSchema = new mongoose.Schema(
         exercises: [
             {
                 name: { type: String, required: true },
-                setNr: { type: Number, min: 0 },
-                nrReps: { type: Number, min: 0 },
-                weight: { type: Number, min: 0 },
-                duration: { type: Number, min: 0 },
+                sets: [
+                    {
+                        setNr: { type: Number, min: 0 },
+                        nrReps: { type: Number, min: 0 },
+                        weight: { type: Number, min: 0 },
+                        duration: { type: Number, min: 0 },
+                        completed: { type: Boolean, default: false },
+                    },
+                ],
             },
         ],
     },

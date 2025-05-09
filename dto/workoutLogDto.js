@@ -9,11 +9,16 @@ const workoutLogDto = (log) => {
         exercises: log.exercises.map((ex) => ({
             id: ex._id,
             name: ex.name,
-            setNr: ex.setNr,
-            nrReps: ex.nrReps,
-            weight: ex.weight,
-            duration: ex.duration,
+            sets: ex.sets.map((set) => ({
+                setNr: set.setNr,
+                nrReps: set.nrReps,
+                weight: set.weight,
+                duration: set.duration,
+                completed: set.completed,
+            })),
         })),
+        createdAt: log.createdAt,
+        updatedAt: log.updatedAt,
     };
 };
 
