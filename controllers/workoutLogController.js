@@ -22,7 +22,7 @@ const getLogs = async (req, res) => {
 
         res.status(200).json({
             message: "Workout logs retrieved",
-            workoutLog: logs.map(workoutLogPreviewDto),
+            workoutLogs: logs.map(workoutLogPreviewDto),
         });
     } catch (err) {
         res.status(err.statusCode || 500).json({
