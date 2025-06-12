@@ -3,9 +3,9 @@
   "version": "1.0.0",
   "main": "app.js",
   "type": "commonjs",
-  "scripts": {
-    "dev": "nodemon app.js",
-    "test": "echo \"Error: no test specified\" && exit 1"
+ "scripts": {
+    "dev": "cross-env NODE_ENV=development nodemon server.js",
+    "test": "cross-env NODE_ENV=test jest --detectOpenHandles --verbose"
   },
   "author": "Cata",
   "license": "ISC",
@@ -15,6 +15,7 @@
     "cors": "^2.8.5",
     "dotenv": "^16.4.7",
     "express": "^4.21.2",
+    "gym-app-cata": "file:",
     "jsonwebtoken": "^9.0.2",
     "mongodb": "^6.15.0",
     "mongoose": "^8.12.1",
@@ -22,5 +23,11 @@
     "nodemon": "^3.1.9",
     "openai": "^4.95.1",
     "uuid": "^11.1.0"
+  },
+  "devDependencies": {
+    "cross-env": "^7.0.3",
+    "jest": "^30.0.0",
+    "mongodb-memory-server": "^10.1.4",
+    "supertest": "^7.1.1"
   }
 }
