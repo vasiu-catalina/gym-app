@@ -17,10 +17,7 @@ const authMiddleware = (req, res, next) => {
     try {
         const currentUser = req.user;
         const wantedUserId = req.params.userId;
-
-        console.log(currentUser, wantedUserId);
-
-        console.log(isEqualId(currentUser, wantedUserId) || isTrainer(currentUser, wantedUserId));
+        
         if (isEqualId(currentUser, wantedUserId) || isTrainer(currentUser, wantedUserId)) {
             return next();
         }

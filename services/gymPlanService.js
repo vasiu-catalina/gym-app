@@ -73,8 +73,6 @@ const getContentData = (user, data) => {
 const generateGymPlan = async (user, data) => {
     const response = await getOpenAiResponse(getContentData(user, data));
 
-    console.log(response);
-
     const gymPlan = await GymPlan.create({
         user: user._id,
         isAiGenerated: true,

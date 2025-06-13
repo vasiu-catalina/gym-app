@@ -3,7 +3,6 @@ require("dotenv").config();
 
 const connect = async () => {
     const { DB_USERNAME, DB_PASSWORD, DB_NAME } = process.env;
-    console.log(DB_USERNAME, DB_PASSWORD, DB_NAME);
     const uri = `mongodb://${DB_USERNAME}:${DB_PASSWORD}@127.0.0.1:27017/${DB_NAME}?authSource=admin`;
     console.log(uri);
     try {
